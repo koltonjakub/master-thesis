@@ -13,11 +13,12 @@
   } while (0)
 
 __global__ void kernel() {
-  printf("cuda kernel called!\n");
+  const int tid = blockDim.x * blockIdx.x + threadIdx.x;
+  printf("CUDA %d-th kernel called!\n", tid);
 }
 
 void callKernel() {
-  kernel<<<1, 1>>>();
+  kernel<<<4, 4>>>();
   CUDA_CHECK(cudaGetLastError());
   CUDA_CHECK(cudaDeviceSynchronize());
 }
