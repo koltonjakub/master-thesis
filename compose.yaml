@@ -1,0 +1,14 @@
+services:
+  master-thesis:
+    image: master-thesis:0.1
+    container_name: master-thesis-container
+    gpus: all
+    stdin_open: true
+    tty: true
+    volumes:
+      # connect volume or mount for default bazel build directory
+      - .:/workspace:z
+
+
+volumes:
+  # add volume or mount for default bazel build
